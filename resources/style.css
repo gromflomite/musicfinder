@@ -1,0 +1,105 @@
+/* ------------------------ Common and home ------------------------ */
+
+body {
+    background-image: url("./images/background.png");
+    font-family: 'Permanent Marker', cursive;
+}
+
+.navbar {
+    font-size: 2rem;
+}
+
+.navbar img {
+    max-width: 30%;
+    min-width: 20%;
+    height: auto;
+    border-radius: 10%;
+}
+
+.moto {
+    background-color: beige;
+}
+
+.moto h1 {
+    padding-top: 1%;
+    padding-left: 3%;
+    color: #8a27ee;
+}
+
+.moto h3 {
+    font-family: 'Raleway', sans-serif;
+    padding-left: 3%;
+    padding-bottom: 1%;
+}
+
+main img {
+    border-radius: 5%
+}
+
+.carousels {
+    display: flex;
+    margin-right: 5%;
+    margin-left: 5%;
+    padding-bottom: 5%;
+}
+
+.upCarousel {
+    text-align: center;
+    margin: 1rem;
+}
+
+.trackCarousel {
+    max-width: 30%;
+    height: auto;
+}
+
+.artistCarousel {
+    max-width: 30%;
+    height: auto;
+}
+
+footer {
+    text-align: center;
+}
+
+
+/* ------------------------ Searcher ------------------------ */
+
+.searchmoto {
+    padding-left: 6%;
+    padding-top: 1%;
+    padding-bottom: 1%
+}
+
+.searchbuttons {
+    padding-top: 1%;
+}
+
+
+audio{    
+    
+    padding-left: 3%;
+    
+}
+
+#resultbox p {
+    padding-top: 3%;
+    font-size: 1.5rem;
+}
+
+#otherartists {
+    padding-top: 2%;
+    font-size: 1.5rem;
+}
+
+#moreartists a {
+    font-size: 1em;
+    
+}
+
+#moreartists a {
+    font-size: 1em;
+    
+}
+
+/* ------------------------ About ------------------------ */
