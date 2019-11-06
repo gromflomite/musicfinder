@@ -110,11 +110,66 @@ buttonArtist.addEventListener('click', function() {
 // END artist button functionality -----------------------------------------------------------------------------------------------------------------
 
 // Album button functionality -----------------------------------------------------------------------------------------------------------------
-let artistForAlbum = prompt("Please enter your name", "Harry Potter");
+let buttonAlbum = document.getElementById('buttonalbum');
 
-if (person != null) {
-    document.getElementById("demo").innerHTML =
-        "Hello " + person + "! How are you today?";
-}
+buttonAlbum.addEventListener('click', function() {
+    let albumName = document.getElementById('searchbox').value; // To pass the value to last.fm album search--------------------
+    let albumNameWOSpaces = albumName.replace(/\s+/g, '-'); // To use with Deezer fetchs -----------------------------------
 
+    // Cleaning the divs before creating the new elements ---------------------------------------
+    document.getElementById("resultbox").innerHTML = "";
+    document.getElementById("otherartists").innerHTML = "";
+
+    fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album?q=' + albumNameWOSpaces)
+        .then(function(response4) {
+            return response4.json();
+        })
+        .then(function(myJSON4) {
+
+            // Getting the values from Deezer's API to extract data from last.fm's API (that need album + artist) --------------------------------------------
+            let albumDeezerID = myJSON4.data[0].id;
+            let albumArtistDeezer = myJSON4.data[0].artist.name;
+
+            fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/album/' + albumDeezerID)
+                .then(function(response5) {
+                    return response5.json();
+                })
+                .then(function(myJSON5) {
+                    let albumGenreDeezer = myJSON5.genres.data[0].name;
+                    let albumPublishedDeezer = myJSON5.release_date;
+
+                    let albumResults = document.getElementById("resultbox");
+
+                    // Deezer album cover -----------------------------------------------------------------------------------
+                    let albumImage = document.createElement('img');
+                    albumImage.setAttribute("src", myJSON4.data[0].cover_big);
+                    albumResults.appendChild(albumImage);
+
+                    // Deezer album name -----------------------------------------------------------------------------------
+                    let albumName = document.createElement('p');
+                    albumName.innerHTML = ('Album: ' + myJSON4.data[0].title);
+                    albumResults.appendChild(albumName);
+
+                    // Deezer album artist -----------------------------------------------------------------------------------
+                    let albumArtist = document.createElement('p');
+                    albumArtist.innerHTML = ('Artist: ' + myJSON4.data[0].artist.name);
+                    albumResults.appendChild(albumArtist);
+
+                    // Deezer album number of tracks -----------------------------------------------------------------------------------
+                    let albumNOT = document.createElement('p');
+                    albumNOT.innerHTML = ('Number of tracks: ' + myJSON4.data[0].nb_tracks);
+                    albumResults.appendChild(albumNOT);
+
+                    // Deezer album genre -----------------------------------------------------------------------------------
+                    let albumGenre = document.createElement('p');
+                    albumGenre.innerHTML = ('Genre: ' + albumGenreDeezer);
+                    albumResults.appendChild(albumGenre);
+
+                    // Deezer album published -----------------------------------------------------------------------------------
+                    let albumPublished = document.createElement('p');
+                    albumPublished.innerHTML = ('Date: ' + albumPublishedDeezer);
+                    albumResults.appendChild(albumPublished);
+                });
+        });
+});
 // END album button functionality -----------------------------------------------------------------------------------------------------------------
