@@ -27,8 +27,6 @@ buttonsong.addEventListener('click', function() {
 });
 // END song button functionality -----------------------------------------------------------------------------------------------------------------
 
-
-
 // Artist button functionality -----------------------------------------------------------------------------------------------------------------
 let buttonArtist = document.getElementById('buttonartist');
 
@@ -167,8 +165,21 @@ buttonAlbum.addEventListener('click', function() {
 
                     // Deezer album published -----------------------------------------------------------------------------------
                     let albumPublished = document.createElement('p');
-                    albumPublished.innerHTML = ('Date: ' + albumPublishedDeezer);
+                    albumPublished.innerHTML = ('Date of publishing: ' + albumPublishedDeezer);
                     albumResults.appendChild(albumPublished);
+
+                    // Deezer album tracklist -----------------------------------------------------------------------------------
+                    let trackListDeezer = myJSON5.tracks.data; // Getting the array of tracks from Deezer ----------------
+
+                    for (let index = 0; index < trackListDeezer.length; index++) {
+
+                        // Checkpoint ------------------------------
+                        console.log(trackListDeezer[index].title);
+
+                        let albumSong = document.createElement('p');
+                        albumSong.innerHTML = (trackListDeezer[index].title);
+                        albumResults.appendChild(albumSong);
+                    }
                 });
         });
 });
