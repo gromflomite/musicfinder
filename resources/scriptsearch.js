@@ -1,3 +1,4 @@
+// Song button functionality -----------------------------------------------------------------------------------------------------------------
 let buttonsong = document.getElementById('buttonsong');
 
 buttonsong.addEventListener('click', function() {
@@ -24,12 +25,20 @@ buttonsong.addEventListener('click', function() {
             otherArtist.innerHTML = '<p class="otherartiststext">We have found more artists that performs this song</p>' + '<div class="dropdown" id="moreartists"><a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Show other artists</a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="#">' + myJSON.data[1].artist.name + '</a><a class="dropdown-item" href="#">' + myJSON.data[2].artist.name + '</a> <a class="dropdown-item" href="#">' + myJSON.data[3].artist.name + '</a> </div></div></div></div>';
         });
 });
+// END song button functionality -----------------------------------------------------------------------------------------------------------------
 
+
+
+// Artist button functionality -----------------------------------------------------------------------------------------------------------------
 let buttonArtist = document.getElementById('buttonartist');
 
 buttonArtist.addEventListener('click', function() {
     let artist = document.getElementById('searchbox').value; // To use with last.fm fetchs -----------------------------------
     let artistWOSpaces = artist.replace(/\s+/g, '-'); // To use with Deezer fetchs -----------------------------------
+
+    // Cleaning the divs before creating the new elements ---------------------------------------
+    document.getElementById("resultbox").innerHTML = "";
+    document.getElementById("otherartists").innerHTML = "";
 
     // Checkpoint ------------------------------
     console.log(artistWOSpaces);
@@ -60,7 +69,7 @@ buttonArtist.addEventListener('click', function() {
 
                     // last.fm artist name -----------------------------------------------------------------------------------
                     let artistName = document.createElement('p');
-                    artistName.innerHTML = ('Name: ' + myJSON2.artist.name);
+                    artistName.innerHTML = ('Artist: ' + myJSON2.artist.name);
                     artistResults.appendChild(artistName);
 
                     // last.fm artist genre -----------------------------------------------------------------------------------
@@ -73,29 +82,39 @@ buttonArtist.addEventListener('click', function() {
                     artistSimilar.innerHTML = ('Similar artists: ' + myJSON2.artist.similar.artist[0].name + ' - ' + myJSON2.artist.similar.artist[1].name);
                     artistResults.appendChild(artistSimilar);
 
-                    // last.fm on tour -----------------------------------------------------------------------------------
+                    // last.fm artist on tour -----------------------------------------------------------------------------------
                     let ontour = myJSON2.artist.ontour;
-
+                    // last.fm API returns 1 if artist is on tour and 0 if not -------
                     if (ontour == 0) {
                         let artistTour = document.createElement('p');
                         artistTour.innerHTML = (myJSON2.artist.name + ' is not on tour');
                         artistResults.appendChild(artistTour);
-
                     } else {
                         let artistTour = document.createElement('p');
                         artistTour.innerHTML = (myJSON2.artist.name + ' is on tour!!');
                         artistResults.appendChild(artistTour);
                     }
 
-                    // last.fm listeners & play counts -----------------------------------------------------------------------------------
+                    // last.fm artist listeners & play counts -----------------------------------------------------------------------------------
                     let artistListeners = document.createElement('p');
                     artistListeners.innerHTML = (myJSON2.artist.name + ' has ' + myJSON2.artist.stats.listeners + ' listeners in last.fm, that played ' + myJSON2.artist.stats.playcount + ' songs');
                     artistResults.appendChild(artistListeners);
 
-                    // last.fm bio -----------------------------------------------------------------------------------
+                    // last.fm artist bio -----------------------------------------------------------------------------------
                     let artistBio = document.createElement('p');
                     artistBio.innerHTML = (myJSON2.artist.bio.summary);
                     artistResults.appendChild(artistBio);
                 });
         });
 });
+// END artist button functionality -----------------------------------------------------------------------------------------------------------------
+
+// Album button functionality -----------------------------------------------------------------------------------------------------------------
+let artistForAlbum = prompt("Please enter your name", "Harry Potter");
+
+if (person != null) {
+    document.getElementById("demo").innerHTML =
+        "Hello " + person + "! How are you today?";
+}
+
+// END album button functionality -----------------------------------------------------------------------------------------------------------------
