@@ -17,12 +17,38 @@ buttonsong.addEventListener('click', function() {
             console.log(myJSON.data[0].preview);
 
             let userSong = document.getElementById("resultbox");
-            userSong.innerHTML = '<p>Playing artist: ' + myJSON.data[0].artist.name + '</p>' + '<p>From album: ' + myJSON.data[0].album.title + ' </p>' + '<audio controls autoplay> <source src=' + myJSON.data[0].preview + ' type="audio/mpeg"> </audio>';
 
-            let otherArtist = document.getElementById("otherartists");
-            let newArtist = document.createElement('p');
+            userSong.innerHTML = ('<p>Playing artist: ' + myJSON.data[0].artist.name + '</p>' + '<p>From album: ' + myJSON.data[0].album.title + ' </p>' + '<audio controls autoplay> <source src=' + myJSON.data[0].preview + ' type="audio/mpeg"> </audio>'
 
-            otherArtist.innerHTML = '<p class="otherartiststext">We have found more artists that performs this song</p>' + '<div class="dropdown" id="moreartists"><a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Show other artists</a><div class="dropdown-menu" aria-labelledby="dropdownMenuLink"><a class="dropdown-item" href="#">' + myJSON.data[1].artist.name + '</a><a class="dropdown-item" href="#">' + myJSON.data[2].artist.name + '</a> <a class="dropdown-item" href="#">' + myJSON.data[3].artist.name + '</a> </div></div></div></div>';
+                +
+
+                '<h2 class="moreartisth2"> We found more artists performing this song</h2>'
+
+                +
+
+                '<ul class="list-unstyled"> \
+            <li class="media"> \
+              <img src=' + myJSON.data[1].artist.picture_small + ' class="mr-4" alt="..."> \
+              <div class="media-body"> \
+                <h5 class="mt-0 mb-1"> ' + myJSON.data[1].artist.name + ' </h5> \
+                In the album ' + myJSON.data[1].album.title + ' \
+              </div> \
+            </li> \
+            <li class="media my-4"> \
+              <img src=' + myJSON.data[2].artist.picture_small + ' class="mr-4" alt="..."> \
+              <div class="media-body"> \
+                <h5 class="mt-0 mb-1">' + myJSON.data[2].artist.name + ' </h5> \
+                In the album ' + myJSON.data[2].album.title + ' \
+              </div> \
+            </li> \
+            <li class="media"> \
+              <img src=' + myJSON.data[3].artist.picture_small + ' class="mr-4" alt="..."> \
+              <div class="media-body"> \
+                <h5 class="mt-0 mb-1">' + myJSON.data[3].artist.name + ' </h5> \
+                In the album ' + myJSON.data[3].album.title + ' \
+              </div> \
+            </li> \
+          </ul>')
         });
 });
 // END song button functionality -----------------------------------------------------------------------------------------------------------------
@@ -36,7 +62,6 @@ buttonArtist.addEventListener('click', function() {
 
     // Cleaning the divs before creating the new elements ---------------------------------------
     document.getElementById("resultbox").innerHTML = "";
-    document.getElementById("otherartists").innerHTML = "";
 
     // Checkpoint ------------------------------
     console.log(artistWOSpaces);
@@ -116,7 +141,6 @@ buttonAlbum.addEventListener('click', function() {
 
     // Cleaning the divs before creating the new elements ---------------------------------------
     document.getElementById("resultbox").innerHTML = "";
-    document.getElementById("otherartists").innerHTML = "";
 
     fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album?q=' + albumNameWOSpaces)
         .then(function(response4) {
