@@ -4,8 +4,8 @@ let buttonsong = document.getElementById('buttonsong');
 buttonsong.addEventListener('click', function() {
     let song = document.getElementById('searchbox').value;
 
-    // Checkpoint ------------------------------
-    console.log(song);
+    // // Checkpoint ------------------------------
+    // console.log(song);
 
     fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=' + song)
         .then(function(response) {
@@ -13,18 +13,15 @@ buttonsong.addEventListener('click', function() {
         })
         .then(function(myJSON) {
 
-            // Checkpoint ------------------------------            
-            console.log(myJSON.data[0].preview);
+            // // Checkpoint ------------------------------            
+            // console.log(myJSON.data[0].preview);
 
             let userSong = document.getElementById("resultbox");
 
             userSong.innerHTML = ('<p>Playing artist: ' + myJSON.data[0].artist.name + '</p>' + '<p>From album: ' + myJSON.data[0].album.title + ' </p>' + '<audio controls autoplay> <source src=' + myJSON.data[0].preview + ' type="audio/mpeg"> </audio>'
 
                 +
-
-                '<h2 class="moreartisth2"> We found more artists performing this song</h2>'
-
-                +
+                '<h2 class="moreartisth2"> We found more artists performing this song</h2>' +
 
                 '<ul class="list-unstyled"> \
             <li class="media"> \
@@ -56,21 +53,29 @@ buttonsong.addEventListener('click', function() {
 // Artist button functionality -----------------------------------------------------------------------------------------------------------------
 let buttonArtist = document.getElementById('buttonartist');
 
+// Declaring the vars out of the fetch to use it later down the road ----------------------------------------------
+let artistIDDeezer;
+let arrayAlbumListDeezer;
+
 buttonArtist.addEventListener('click', function() {
     let artist = document.getElementById('searchbox').value; // To use with last.fm fetchs -----------------------------------
-    let artistWOSpaces = artist.replace(/\s+/g, '-'); // To use with Deezer fetchs -----------------------------------
+    let artistWOSpaces = artist.replace(/\s+/g, '-'); // To use with Deezer fetchs (the API does not support spaces, we need to use hyphens instead -----
 
     // Cleaning the divs before creating the new elements ---------------------------------------
     document.getElementById("resultbox").innerHTML = "";
 
-    // Checkpoint ------------------------------
-    console.log(artistWOSpaces);
+    // // Checkpoint ------------------------------
+    // console.log(artistWOSpaces);
 
     fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/' + artistWOSpaces)
         .then(function(response3) {
             return response3.json();
         })
         .then(function(myJSON3) {
+
+            // Extracting the artist ID to retrieve the list of albums -----------------------------------------
+            artistIDDeezer = myJSON3.id;
+            // console.log('Dezzer ID artist: ' + artistIDDeezer); // Checkpoint ------------------------------
 
             let artistResults = document.getElementById("resultbox");
 
@@ -79,14 +84,15 @@ buttonArtist.addEventListener('click', function() {
             artistImage.setAttribute("src", myJSON3.picture_big);
             artistResults.appendChild(artistImage);
 
+            // Fetching the data of artist from last.fm  --------------------------------------
             fetch('https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=66712c4097f5473a3fa324d8d74b557c&format=json')
                 .then(function(response2) {
                     return response2.json();
                 })
                 .then(function(myJSON2) {
 
-                    // Checkpoint ------------------------------            
-                    console.log(myJSON2.artist.bio.summary);
+                    // // Checkpoint ------------------------------            
+                    // console.log(myJSON2.artist.bio.summary);
 
                     let artistResults = document.getElementById("resultbox");
 
@@ -127,6 +133,30 @@ buttonArtist.addEventListener('click', function() {
                     let artistBio = document.createElement('p');
                     artistBio.innerHTML = (myJSON2.artist.bio.summary);
                     artistResults.appendChild(artistBio);
+
+                    // Deezer artist albums -----------------------------------------------------------------------------------
+                    // Fetching the list of albums from Deezer using the artist ID created above -------------------------------
+                    fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/' + artistIDDeezer + '/albums')
+                        .then(function(response6) {
+                            return response6.json();
+                        })
+                        .then(function(myJSON6) {
+
+                            arrayAlbumListDeezer = myJSON6.data;
+
+                            // // Checkpoint ------------------------------
+                            // console.log(arrayAlbumListDeezer);
+
+                            for (let index2 = 0; index2 < arrayAlbumListDeezer.length; index2++) {
+
+                                // // Checkpoint ------------------------------
+                                // console.log(arrayAlbumListDeezer[index2].title);
+
+                                let albumListDezzer = document.createElement('p');
+                                albumListDezzer.innerHTML = (arrayAlbumListDeezer[index2].title);
+                                artistResults.appendChild(albumListDezzer);
+                            }
+                        });
                 });
         });
 });
@@ -137,7 +167,7 @@ let buttonAlbum = document.getElementById('buttonalbum');
 
 buttonAlbum.addEventListener('click', function() {
     let albumName = document.getElementById('searchbox').value; // To pass the value to last.fm album search--------------------
-    let albumNameWOSpaces = albumName.replace(/\s+/g, '-'); // To use with Deezer fetchs -----------------------------------
+    let albumNameWOSpaces = albumName.replace(/\s+/g, '-'); // To use with Deezer fetchs (the API does not support spaces, we need to use hyphens instead -----
 
     // Cleaning the divs before creating the new elements ---------------------------------------
     document.getElementById("resultbox").innerHTML = "";
@@ -197,8 +227,8 @@ buttonAlbum.addEventListener('click', function() {
 
                     for (let index = 0; index < trackListDeezer.length; index++) {
 
-                        // Checkpoint ------------------------------
-                        console.log(trackListDeezer[index].title);
+                        // // Checkpoint ------------------------------
+                        // console.log(trackListDeezer[index].title);
 
                         let albumSong = document.createElement('p');
                         albumSong.innerHTML = (trackListDeezer[index].title);
