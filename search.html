@@ -66,22 +66,27 @@
     </header>
 
     <main>
-        <h1 class="searchmoto">Searcher</h1>
+        <h1 class="searchmoto offset-2">Searcher</h1>
 
         <div class="row" id="boxsearch">
-            <div class="input-group input-group-lg col-8 offset-0">
+            <div class="input-group input-group-lg col-7 offset-2">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="inputGroup-sizing-lg">I'm looking for...</span>
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><img src="./resources/images/search.svg" alt=""></span>
                 </div>
                 <input type="text" class="form-control" id="searchbox" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
             </div>
         </div>
 
         <div class="row searchbuttons">
-            <button type="button" class="btn btn-dark col-1 offset-0 buttonartist" id="buttonartist">Artist</button>
-            <button type="button" class="btn btn-dark col-1 offset-1 buttonalbum" id="buttonalbum">Album</button>
-            <button type="button" class="btn btn-dark col-1 offset-1 buttonsong" id="buttonsong">Song</button>
-
+            <div class="col-lg-2 offset-lg-3">
+                <button type="button" class="btn btn-dark  buttonartist" id="buttonartist">Artist</button>
+            </div>
+            <div class="col-lg-2 offset-lg-0.5">
+                <button type="button" class="btn btn-dark buttonalbum" id="buttonalbum">Album</button>
+            </div>
+            <div class="col-lg-2 offset-lg-0.5">
+                <button type="button" class="btn btn-dark buttonsong" id="buttonsong">Song</button>
+            </div>
         </div>
 
         <div id="resultbox" class="col-8 offset-2">
@@ -89,6 +94,7 @@
         </div>
 
     </main>
+
     <footer class="footer mt-auto py-1 bg-dark fixed-bottom">
         <div class="container">
             <span class="text-muted">Music finder - Module 2 final project BBKBootcamp</span>
