@@ -40,24 +40,58 @@ main img {
 
 .carousels {
     display: flex;
+    text-align: center;
     margin-right: 5%;
     margin-left: 5%;
     padding-bottom: 5%;
 }
 
-.upCarousel {
+.upcarousels {
     text-align: center;
-    margin: 1rem;
+    padding: 1rem;    
+    letter-spacing: 0.5rem;
+    font-family: 'Prosto One', cursive;
+    font-size: 2.5rem;   
 }
 
 .trackCarousel {
     max-width: 30%;
     height: auto;
+    font-family: 'Prosto One', cursive;
 }
 
 .artistCarousel {
     max-width: 30%;
     height: auto;
+    font-family: 'Prosto One', cursive;
+}
+
+.uplastfm {
+    text-align: center;    
+    font-size: 2.5rem;
+    letter-spacing: 0.5rem;    
+   font-family: 'Prosto One', cursive;
+
+}
+
+#lastfmcharts {
+    display: flex;   
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+#lastfmcharts h2 {
+    padding-bottom: 1rem;
+    font-size: 2rem;   
+   font-family: 'Prosto One', cursive;
+
+}
+
+#lastfmtopartists, #lastfmtoptracks {    
+    padding: 5%;    
+    padding-top: 4%;
 }
 
 footer {    
@@ -75,7 +109,7 @@ footer {
 }
 
 #boxsearch {
-    padding-left: 9%
+    padding-left: 9%;
 }
 
 .searchbuttons {
@@ -87,15 +121,20 @@ audio {
     padding-left: 3%;    
 }
 
-
 #resultbox {
     padding-top: 2%;
+    text-align: justify;
+}
+
+#artistimage {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    border-radius: 20% 0%;
 }
 
 #resultbox p {    
     font-size: 2rem;
-    padding-bottom: 1rem;
-    
+    padding-bottom: 1rem;    
 }
 
 #otherartists {
@@ -110,6 +149,12 @@ audio {
 #moreartists a {
     font-size: 1em;
     padding: 1rem;    
+}
+
+#resultbox p.albums {
+   font-size: 1.5em;
+    padding: 0;
+    margin: 0;
 }
 
 /* ------------------------ About ------------------------ */

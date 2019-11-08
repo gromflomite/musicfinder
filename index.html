@@ -8,7 +8,7 @@
     <title>Music finder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./resources/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Michroma|Monoton|Poiret+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Michroma|Monoton|Prosto+One|Poiret+One|Righteous&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="57x57" href="./resources/images/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="./resources/images/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="./resources/images/favicon/apple-icon-72x72.png">
@@ -34,7 +34,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
             <div class="container">
                 <a class="navbar-brand" href="index.html">
-                    <img src="./resources/images/logo.png" alt="Website logo">
+                    <img src="./resources/images/logo.png" alt="Music Finder">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -67,9 +67,9 @@
 
     <main>
 
-        <h1 class="upCarousel">Deezer trendings</h1>
-
         <!-- ----- Carousels block ---------------------------------------------------------------------------------------------- -->
+        <h1 class="upcarousels">Deezer world trends</h1>
+
         <div class="carousels">
             <!-- ----- Top artist carousel ---------------------------------------------------------------------------------------------- -->
             <div class="container artistCarousel">
@@ -156,6 +156,24 @@
             <!-- ----- END top tracks carousel ---------------------------------------------------------------------------------------------- -->
         </div>
         <!-- ----- END carousels block ---------------------------------------------------------------------------------------------- -->
+
+        <!-- ----- last.fm charts block ---------------------------------------------------------------------------------------------- -->
+        <h1 class="uplastfm">last.fm Spain trends</h1>
+
+        <div id="lastfmcharts">
+
+            <div id="lastfmtopartists">
+                <h2>Top artists</h2>
+
+            </div>
+
+            <div id="lastfmtoptracks">
+                <h2>Top tracks</h2>
+
+            </div>
+
+        </div>
+        <!-- ----- END last.fm charts block ---------------------------------------------------------------------------------------------- -->
 
     </main>
     <footer class="footer mt-auto py-1 bg-dark fixed-bottom">

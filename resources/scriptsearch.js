@@ -82,7 +82,7 @@ buttonArtist.addEventListener('click', function() {
             // Deezer artist image -----------------------------------------------------------------------------------
             let artistImage = document.createElement('img');
             artistImage.setAttribute("src", myJSON3.picture_big);
-            artistResults.appendChild(artistImage);
+            artistResults.appendChild(artistImage).setAttribute('id', 'artistimage');
 
             // Fetching the data of artist from last.fm  --------------------------------------
             fetch('https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=66712c4097f5473a3fa324d8d74b557c&format=json')
@@ -147,6 +147,11 @@ buttonArtist.addEventListener('click', function() {
                             // // Checkpoint ------------------------------
                             // console.log(arrayAlbumListDeezer);
 
+                            // Create a new <p> for title above the album list
+                            let resultBoxAlbumsListTitle = document.createElement('p');
+                            resultBoxAlbumsListTitle.innerHTML = ('Album list');
+                            artistResults.appendChild(resultBoxAlbumsListTitle);
+
                             for (let index2 = 0; index2 < arrayAlbumListDeezer.length; index2++) {
 
                                 // // Checkpoint ------------------------------
@@ -154,7 +159,7 @@ buttonArtist.addEventListener('click', function() {
 
                                 let albumListDezzer = document.createElement('p');
                                 albumListDezzer.innerHTML = (arrayAlbumListDeezer[index2].title);
-                                artistResults.appendChild(albumListDezzer);
+                                artistResults.appendChild(albumListDezzer).setAttribute('class', 'albums');
                             }
                         });
                 });
@@ -195,7 +200,7 @@ buttonAlbum.addEventListener('click', function() {
                     // Deezer album cover -----------------------------------------------------------------------------------
                     let albumImage = document.createElement('img');
                     albumImage.setAttribute("src", myJSON4.data[0].cover_big);
-                    albumResults.appendChild(albumImage);
+                    albumResults.appendChild(albumImage).setAttribute('id', 'albumcover');
 
                     // Deezer album name -----------------------------------------------------------------------------------
                     let albumName = document.createElement('p');
