@@ -34,16 +34,16 @@ body {
     padding-bottom: 1%;
 }
 
-main img {
-    border-radius: 5%
-}
-
 .carousels {
     display: flex;
     text-align: center;
     margin-right: 5%;
     margin-left: 5%;
     padding-bottom: 5%;
+}
+
+.carousel img {
+    border-radius: 20% 0%;
 }
 
 .upcarousels {
@@ -70,8 +70,7 @@ main img {
     text-align: center;    
     font-size: 2.5rem;
     letter-spacing: 0.5rem;    
-   font-family: 'Prosto One', cursive;
-
+    font-family: 'Prosto One', cursive;
 }
 
 #lastfmcharts {
@@ -132,29 +131,117 @@ audio {
     border-radius: 20% 0%;
 }
 
+#albumcover {
+    padding-top: 5%;
+    padding-bottom: 5%;    
+}
+
 #resultbox p {    
     font-size: 2rem;
     padding-bottom: 1rem;    
 }
 
-#otherartists {
-    padding-top: 2%;    
-    font-size: 1.5rem;    
+#resultbox .upalbumslist {    
+    padding-top: 6%;    
 }
 
-#moreartists a {
-    font-size: 1em;    
-}
-
-#moreartists a {
-    font-size: 1em;
-    padding: 1rem;    
+#resultbox .uptracklist {    
+    padding-top: 6%;    
 }
 
 #resultbox p.albums {
-   font-size: 1.5em;
+    font-size: 1.5em;
     padding: 0;
     margin: 0;
 }
 
+#resultbox p.tracks {
+    font-size: 1.5em;
+    padding: 0;
+    margin: 0;
+}
+
+.upmoreartist {
+    padding-top: 5%;
+    padding-bottom: 3%;
+}
+
+.list-unstyled {
+    padding-left: 8%;    
+}
+
+.media-body {
+    font-size: 1.5vw;
+}
+
+.media-body h5 {
+    font-size: 1.5vw;
+}
+
 /* ------------------------ About ------------------------ */
+
+.uplogosbox {
+    font-family: 'Michroma', sans-serif;   
+    text-align: center;
+    font-size: 3vw;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+#apilogos {
+    display: flex;
+    justify-content: center;    
+}
+
+#deezerlogo {
+    width: 25%;
+    height: 25%;
+    margin-right: 4%
+}
+
+#lastfmlogo {
+    width: 20%;
+    height: 20%;
+    margin-left: 4%;    
+}
+
+.uptechlogos {
+    text-align: center;
+    font-family: 'Michroma', sans-serif;  
+    font-size: 3vw;
+    padding-top: 6%;
+    padding-bottom: 2%;
+    
+}
+
+#techlogos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+#htmllogo {
+    width: 15%;   
+}
+
+#csslogo {
+    width: 11%;    
+}
+
+#jslogo {
+    width: 12%;    
+}
+
+#bslogo {
+    width: 12%;
+}
+
+.robthanks {
+    text-align: center;
+    padding-top: 5%;
+    font-size: 2vw;
+    font-weight: bold;
+}
+    
+   

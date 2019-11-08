@@ -18,10 +18,10 @@ buttonsong.addEventListener('click', function() {
 
             let userSong = document.getElementById("resultbox");
 
-            userSong.innerHTML = ('<p>Playing artist: ' + myJSON.data[0].artist.name + '</p>' + '<p>From album: ' + myJSON.data[0].album.title + ' </p>' + '<audio controls autoplay> <source src=' + myJSON.data[0].preview + ' type="audio/mpeg"> </audio>'
+            userSong.innerHTML = ('<div id="songdetails"> <p>Playing artist: ' + myJSON.data[0].artist.name + '</p>' + '<p>From album: ' + myJSON.data[0].album.title + ' </p>' + '<audio controls autoplay> <source src=' + myJSON.data[0].preview + ' type="audio/mpeg"> </audio> </div>'
 
                 +
-                '<h2 class="moreartisth2"> We found more artists performing this song</h2>' +
+                '<h2 class="upmoreartist"> We have found some more artists or albums related with this song </h2>' +
 
                 '<ul class="list-unstyled"> \
             <li class="media"> \
@@ -150,7 +150,7 @@ buttonArtist.addEventListener('click', function() {
                             // Create a new <p> for title above the album list
                             let resultBoxAlbumsListTitle = document.createElement('p');
                             resultBoxAlbumsListTitle.innerHTML = ('Album list');
-                            artistResults.appendChild(resultBoxAlbumsListTitle);
+                            artistResults.appendChild(resultBoxAlbumsListTitle).setAttribute('class', 'upalbumslist');
 
                             for (let index2 = 0; index2 < arrayAlbumListDeezer.length; index2++) {
 
@@ -230,6 +230,11 @@ buttonAlbum.addEventListener('click', function() {
                     // Deezer album tracklist -----------------------------------------------------------------------------------
                     let trackListDeezer = myJSON5.tracks.data; // Getting the array of tracks from Deezer ----------------
 
+                    // Create a new <p> for title above the tracklist
+                    let resultBoxTracklisttTitle = document.createElement('p');
+                    resultBoxTracklisttTitle.innerHTML = ('Album tracklist');
+                    albumResults.appendChild(resultBoxTracklisttTitle).setAttribute('class', 'uptracklist');
+
                     for (let index = 0; index < trackListDeezer.length; index++) {
 
                         // // Checkpoint ------------------------------
@@ -237,7 +242,7 @@ buttonAlbum.addEventListener('click', function() {
 
                         let albumSong = document.createElement('p');
                         albumSong.innerHTML = (trackListDeezer[index].title);
-                        albumResults.appendChild(albumSong);
+                        albumResults.appendChild(albumSong).setAttribute('class', 'tracks');
                     }
                 });
         });
