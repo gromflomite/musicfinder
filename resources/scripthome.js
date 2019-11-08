@@ -43,7 +43,7 @@ fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/chart/0/tracks
 // last.fm Spain top artists -------------------------------------------------------------------------------------------
 let lastfmTopArtists = document.getElementById("lastfmtopartists");
 
-fetch('http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=spain&api_key=66712c4097f5473a3fa324d8d74b557c&format=json')
+fetch('https://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=spain&api_key=66712c4097f5473a3fa324d8d74b557c&format=json')
     .then(function(response3) {
         return response3.json();
     })
@@ -73,7 +73,7 @@ fetch('http://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=spain&
 // last.fm Spain top tracks -------------------------------------------------------------------------------------------
 let lastfmTopTracks = document.getElementById("lastfmtoptracks");
 
-fetch('http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=spain&api_key=66712c4097f5473a3fa324d8d74b557c&format=json')
+fetch('https://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=spain&api_key=66712c4097f5473a3fa324d8d74b557c&format=json')
     .then(function(response4) {
         return response4.json();
     })
