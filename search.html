@@ -74,8 +74,31 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><img src="./resources/images/search.svg" alt=""></span>
                 </div>
                 <input type="text" class="form-control" id="searchbox" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                <span class="input-group-text" id="inputGroup-sizing-lg"><button id="oldsearch"><img src="./resources/images/prev_search.svg" alt="Previous searches"></button></span>
             </div>
         </div>
+
+        <!-- ----- Previous searches modal ---------------------------------------------------------------------------------------------- -->
+        <div class="modal" id="searchesmodal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Previous searches</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                    </div>
+                    <div id="searches" class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="deletesearches" class="btn btn-danger" data-dismiss="modal">Delete my searches</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ----- END previous searches modal ---------------------------------------------------------------------------------------------- -->
 
         <div class="row searchbuttons">
             <div class="col-lg-2 offset-lg-3 col-md-1 offset-md-3 col-sm-1 offset-sm-3 col-1 offset-2">
@@ -99,10 +122,12 @@
         <div class="container">
             <span class="text-muted">Music finder - Module 2 final project BBKBootcamp</span>
         </div>
+        <script src="./resources/scriptabout.js"></script>
         <script src="./resources/scriptsearch.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

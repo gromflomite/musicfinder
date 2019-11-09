@@ -1,11 +1,27 @@
-// Song button functionality -----------------------------------------------------------------------------------------------------------------
+// Browser local storage management  ----------------------------------------------------------------------------------------------------------------
+let storedSearches = JSON.parse(localStorage.getItem('Search')); // Getting the existing values in browser local storage ---------------
+let previousSearches = []; // Initialize an empty array --------------
+previousSearches.concat(storedSearches); // Adding the existing values to the array (using concat instead push in order to avoid null and weird entries) ---
+
+// Deleting the localStorage data if user press button in the modal---
+let deletePreviousSearches = document.getElementById('deletesearches');
+deletePreviousSearches.addEventListener('click', function() {
+    localStorage.clear();
+});
+// END browser local storage management  ----------------------------------------------------------------------------------------------------------------
+
+// Song button functionality ------------------------------------------------------------------------------------------------------------------------
 let buttonsong = document.getElementById('buttonsong');
 
 buttonsong.addEventListener('click', function() {
     let song = document.getElementById('searchbox').value;
 
-    // // Checkpoint ------------------------------
+    // // Checkpoint ----
     // console.log(song);
+
+    // Saving user search --------------------------------------------
+    previousSearches.push(song);
+    localStorage.setItem('Search', JSON.stringify(previousSearches));
 
     fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search?q=' + song)
         .then(function(response) {
@@ -13,7 +29,7 @@ buttonsong.addEventListener('click', function() {
         })
         .then(function(myJSON) {
 
-            // // Checkpoint ------------------------------            
+            // // Checkpoint ----------------------
             // console.log(myJSON.data[0].preview);
 
             let userSong = document.getElementById("resultbox");
@@ -48,20 +64,24 @@ buttonsong.addEventListener('click', function() {
           </ul>')
         });
 });
-// END song button functionality -----------------------------------------------------------------------------------------------------------------
+// END song button functionality --------------------------------------------------------------------------------------------------------------------
 
-// Artist button functionality -----------------------------------------------------------------------------------------------------------------
+// Artist button functionality ----------------------------------------------------------------------------------------------------------------------
 let buttonArtist = document.getElementById('buttonartist');
 
-// Declaring the vars out of the fetch to use it later down the road ----------------------------------------------
+// Declaring the vars out of the fetch to use it later down the road --------------------
 let artistIDDeezer;
 let arrayAlbumListDeezer;
 
 buttonArtist.addEventListener('click', function() {
-    let artist = document.getElementById('searchbox').value; // To use with last.fm fetchs -----------------------------------
-    let artistWOSpaces = artist.replace(/\s+/g, '-'); // To use with Deezer fetchs (the API does not support spaces, we need to use hyphens instead -----
+    let artist = document.getElementById('searchbox').value; // To use with last.fm fetchs ---------------------------------------------------------------
+    let artistWOSpaces = artist.replace(/\s+/g, '-'); // To use with Deezer fetchs (the API does not support spaces, we need to use hyphens instead) -----
 
-    // Cleaning the divs before creating the new elements ---------------------------------------
+    // Saving user search -------------------------------------------
+    previousSearches.push(artist);
+    localStorage.setItem('Search', JSON.stringify(previousSearches));
+
+    // Cleaning the divs before creating the new elements ----------
     document.getElementById("resultbox").innerHTML = "";
 
     // // Checkpoint ------------------------------
@@ -75,33 +95,33 @@ buttonArtist.addEventListener('click', function() {
 
             // Extracting the artist ID to retrieve the list of albums -----------------------------------------
             artistIDDeezer = myJSON3.id;
-            // console.log('Dezzer ID artist: ' + artistIDDeezer); // Checkpoint ------------------------------
+            // console.log('Dezzer ID artist: ' + artistIDDeezer); // Checkpoint -------------------------------
 
             let artistResults = document.getElementById("resultbox");
 
-            // Deezer artist image -----------------------------------------------------------------------------------
+            // Deezer artist image -----------------------------------------------------------------------------
             let artistImage = document.createElement('img');
             artistImage.setAttribute("src", myJSON3.picture_big);
             artistResults.appendChild(artistImage).setAttribute('id', 'artistimage');
 
-            // Fetching the data of artist from last.fm  --------------------------------------
+            // Fetching the data of artist from last.fm  -----------------------------------------------------------------------------------------------
             fetch('https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=' + artist + '&api_key=66712c4097f5473a3fa324d8d74b557c&format=json')
                 .then(function(response2) {
                     return response2.json();
                 })
                 .then(function(myJSON2) {
 
-                    // // Checkpoint ------------------------------            
+                    // // Checkpoint --------------------------           
                     // console.log(myJSON2.artist.bio.summary);
 
                     let artistResults = document.getElementById("resultbox");
 
-                    // last.fm artist name -----------------------------------------------------------------------------------
+                    // last.fm artist name --------------------------------------------------------------------------------------
                     let artistName = document.createElement('p');
                     artistName.innerHTML = ('Artist: ' + myJSON2.artist.name);
                     artistResults.appendChild(artistName);
 
-                    // last.fm artist genre -----------------------------------------------------------------------------------
+                    // last.fm artist genre -------------------------------------------------------------------------------------
                     let artistGenre = document.createElement('p');
                     artistGenre.innerHTML = ('Genre: ' + myJSON2.artist.tags.tag[0].name + ' - ' + myJSON2.artist.tags.tag[1].name);
                     artistResults.appendChild(artistGenre);
@@ -124,17 +144,17 @@ buttonArtist.addEventListener('click', function() {
                         artistResults.appendChild(artistTour);
                     }
 
-                    // last.fm artist listeners & play counts -----------------------------------------------------------------------------------
+                    // last.fm artist listeners & play counts -------------------------------------------------------------------
                     let artistListeners = document.createElement('p');
                     artistListeners.innerHTML = (myJSON2.artist.name + ' has ' + myJSON2.artist.stats.listeners + ' listeners in last.fm, that played ' + myJSON2.artist.stats.playcount + ' songs');
                     artistResults.appendChild(artistListeners);
 
-                    // last.fm artist bio -----------------------------------------------------------------------------------
+                    // last.fm artist bio ---------------------------------------------------------------------------------------
                     let artistBio = document.createElement('p');
                     artistBio.innerHTML = (myJSON2.artist.bio.summary);
                     artistResults.appendChild(artistBio);
 
-                    // Deezer artist albums -----------------------------------------------------------------------------------
+                    // Deezer artist albums ------------------------------------------------------------------------------------
                     // Fetching the list of albums from Deezer using the artist ID created above -------------------------------
                     fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/artist/' + artistIDDeezer + '/albums')
                         .then(function(response6) {
@@ -144,17 +164,17 @@ buttonArtist.addEventListener('click', function() {
 
                             arrayAlbumListDeezer = myJSON6.data;
 
-                            // // Checkpoint ------------------------------
+                            // // Checkpoint --------------------
                             // console.log(arrayAlbumListDeezer);
 
-                            // Create a new <p> for title above the album list
+                            // Create a new <p> for title above the album list----------------------------------------
                             let resultBoxAlbumsListTitle = document.createElement('p');
                             resultBoxAlbumsListTitle.innerHTML = ('Album list');
                             artistResults.appendChild(resultBoxAlbumsListTitle).setAttribute('class', 'upalbumslist');
 
                             for (let index2 = 0; index2 < arrayAlbumListDeezer.length; index2++) {
 
-                                // // Checkpoint ------------------------------
+                                // // Checkpoint ---------------------------------
                                 // console.log(arrayAlbumListDeezer[index2].title);
 
                                 let albumListDezzer = document.createElement('p');
@@ -165,16 +185,20 @@ buttonArtist.addEventListener('click', function() {
                 });
         });
 });
-// END artist button functionality -----------------------------------------------------------------------------------------------------------------
+// END artist button functionality ------------------------------------------------------------------------------------------------------------------
 
-// Album button functionality -----------------------------------------------------------------------------------------------------------------
+// Album button functionality ---------------------------
 let buttonAlbum = document.getElementById('buttonalbum');
 
 buttonAlbum.addEventListener('click', function() {
-    let albumName = document.getElementById('searchbox').value; // To pass the value to last.fm album search--------------------
+    let albumName = document.getElementById('searchbox').value; // To pass the value to last.fm album search---------------------------------------------------
     let albumNameWOSpaces = albumName.replace(/\s+/g, '-'); // To use with Deezer fetchs (the API does not support spaces, we need to use hyphens instead -----
 
-    // Cleaning the divs before creating the new elements ---------------------------------------
+    // Saving user search -------------------------------------------
+    previousSearches.push(albumName);
+    localStorage.setItem('Search', JSON.stringify(previousSearches));
+
+    // Cleaning the divs before creating the new elements ----------
     document.getElementById("resultbox").innerHTML = "";
 
     fetch('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/album?q=' + albumNameWOSpaces)
@@ -183,7 +207,7 @@ buttonAlbum.addEventListener('click', function() {
         })
         .then(function(myJSON4) {
 
-            // Getting the values from Deezer's API to extract data from last.fm's API (that need album + artist) --------------------------------------------
+            // Getting the values from Deezer's API to extract data from last.fm's API (that need album + artist) ---------------
             let albumDeezerID = myJSON4.data[0].id;
             let albumArtistDeezer = myJSON4.data[0].artist.name;
 
@@ -197,27 +221,27 @@ buttonAlbum.addEventListener('click', function() {
 
                     let albumResults = document.getElementById("resultbox");
 
-                    // Deezer album cover -----------------------------------------------------------------------------------
+                    // Deezer album cover ---------------------------------------------------------------------------------------
                     let albumImage = document.createElement('img');
                     albumImage.setAttribute("src", myJSON4.data[0].cover_big);
                     albumResults.appendChild(albumImage).setAttribute('id', 'albumcover');
 
-                    // Deezer album name -----------------------------------------------------------------------------------
+                    // Deezer album name ----------------------------------------------------------------------------------------
                     let albumName = document.createElement('p');
                     albumName.innerHTML = ('Album: ' + myJSON4.data[0].title);
                     albumResults.appendChild(albumName);
 
-                    // Deezer album artist -----------------------------------------------------------------------------------
+                    // Deezer album artist --------------------------------------------------------------------------------------
                     let albumArtist = document.createElement('p');
                     albumArtist.innerHTML = ('Artist: ' + myJSON4.data[0].artist.name);
                     albumResults.appendChild(albumArtist);
 
-                    // Deezer album number of tracks -----------------------------------------------------------------------------------
+                    // Deezer album number of tracks ----------------------------------------------------------------------------
                     let albumNOT = document.createElement('p');
                     albumNOT.innerHTML = ('Number of tracks: ' + myJSON4.data[0].nb_tracks);
                     albumResults.appendChild(albumNOT);
 
-                    // Deezer album genre -----------------------------------------------------------------------------------
+                    // Deezer album genre ---------------------------------------------------------------------------------------
                     let albumGenre = document.createElement('p');
                     albumGenre.innerHTML = ('Genre: ' + albumGenreDeezer);
                     albumResults.appendChild(albumGenre);
@@ -230,7 +254,7 @@ buttonAlbum.addEventListener('click', function() {
                     // Deezer album tracklist -----------------------------------------------------------------------------------
                     let trackListDeezer = myJSON5.tracks.data; // Getting the array of tracks from Deezer ----------------
 
-                    // Create a new <p> for title above the tracklist
+                    // Create a new <p> for title above the tracklist -----------------------------------------------------------
                     let resultBoxTracklisttTitle = document.createElement('p');
                     resultBoxTracklisttTitle.innerHTML = ('Album tracklist');
                     albumResults.appendChild(resultBoxTracklisttTitle).setAttribute('class', 'uptracklist');
@@ -247,4 +271,28 @@ buttonAlbum.addEventListener('click', function() {
                 });
         });
 });
-// END album button functionality -----------------------------------------------------------------------------------------------------------------
+// END album button functionality -----------------------------------------------------------------------------------------------
+
+// Previous user searches modal (body already created in the HTML) --------------------------------------------------------------
+let previousSearchesButton = document.getElementById('oldsearch');
+let searches = document.getElementById('searches');
+
+previousSearchesButton.addEventListener('click', function() {
+
+    // Cleaning the modal before creating the new elements ---------------------------------------
+    document.getElementById("searches").innerHTML = "";
+
+    // Retrieving stored searches-----------------------------------
+    let storedSearches = JSON.parse(localStorage.getItem('Search'));
+
+    // Populating the modal-----------------------------------------
+    for (let index3 = 0; index3 < storedSearches.length; index3++) {
+        let testsearch = document.createElement('p');
+        testsearch.innerHTML = (storedSearches[index3]);
+        searches.appendChild(testsearch);
+    }
+
+    // Launching modal----------
+    $("#searchesmodal").modal();
+});
+// END modal block --------------------------------------------------------------------------------------------------------------
