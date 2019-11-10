@@ -3,6 +3,7 @@
 body {
     background-color: darkgray;
     font-family: 'Poiret One', cursive;
+    margin-bottom: 2%;
 }
 
 .navbar {
@@ -110,8 +111,9 @@ h2#lftopcharts {
 
 footer {
     text-align: center;
-     color: white;
+    color: white;
 }
+
 
 /* ------------------------ Searcher ------------------------ */
 
