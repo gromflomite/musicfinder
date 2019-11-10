@@ -37,7 +37,7 @@ buttonsong.addEventListener('click', function() {
             userSong.innerHTML = ('<div id="songdetails"> <p>Playing artist: ' + myJSON.data[0].artist.name + '</p>' + '<p>From album: ' + myJSON.data[0].album.title + ' </p>' + '<audio controls autoplay> <source src=' + myJSON.data[0].preview + ' type="audio/mpeg"> </audio> </div>'
 
                 +
-                '<h2 class="upmoreartist"> We have found some more artists or albums related with this song </h2>' +
+                '<h2 class="upmoreartist"> We have found some more artists or albums related to this song </h2>' +
 
                 '<ul class="list-unstyled"> \
             <li class="media"> \
@@ -248,7 +248,7 @@ buttonAlbum.addEventListener('click', function() {
 
                     // Deezer album published -----------------------------------------------------------------------------------
                     let albumPublished = document.createElement('p');
-                    albumPublished.innerHTML = ('Date of publishing: ' + albumPublishedDeezer);
+                    albumPublished.innerHTML = ('Release date: ' + albumPublishedDeezer);
                     albumResults.appendChild(albumPublished);
 
                     // Deezer album tracklist -----------------------------------------------------------------------------------

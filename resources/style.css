@@ -1,8 +1,8 @@
 /* ------------------------ Common and home ------------------------ */
-body {    
+
+body {
     background-color: darkgray;
     font-family: 'Poiret One', cursive;
-    margin-bottom: 4%;
 }
 
 .navbar {
@@ -24,11 +24,11 @@ body {
     padding-top: 1%;
     padding-left: 3%;
     color: #8a27ee;
-    font-family: 'Monoton', cursive;    
+    font-family: 'Monoton', cursive;
 }
 
 .moto h3 {
-    font-family: 'Michroma', sans-serif;    
+    font-family: 'Michroma', sans-serif;
     padding-left: 3%;
     padding-bottom: 1%;
 }
@@ -44,14 +44,13 @@ body {
 .carousel img {
     border-radius: 20% 0%;
     max-width: 75%;
-    height:auto;
+    height: auto;
     margin: 0 auto;
-    
 }
 
 .upcarousels {
     text-align: center;
-    padding: 1rem;    
+    padding: 1rem;
     letter-spacing: 0.5rem;
     font-family: 'Poiret One', cursive;
     font-size: 3.5vw;
@@ -60,14 +59,14 @@ body {
 
 h2.upCarousel {
     font-size: 2.5vw;
-    font-weight: bold;    
+    font-weight: bold;
 }
 
 .trackCarousel {
     max-width: 30%;
     height: auto;
     font-family: 'Poiret One', cursive;
-    letter-spacing: 0.5rem;     
+    letter-spacing: 0.5rem;
 }
 
 .artistCarousel {
@@ -86,22 +85,22 @@ h2.upCarousel {
 }
 
 #lastfmcharts {
-    display: flex;   
+    display: flex;
     text-align: center;
     align-items: flex-start;
     justify-content: center;
-    
 }
 
 #lastfmcharts h2 {
     padding-bottom: 1rem;
-    font-size: 2rem;   
+    font-size: 2rem;
     font-family: 'Poiret One', cursive;
 }
 
-#lastfmtopartists, #lastfmtoptracks {    
-    padding: 5%;    
-    padding-top: 3%;    
+#lastfmtopartists,
+#lastfmtoptracks {
+    padding: 5%;
+    padding-top: 3%;
 }
 
 h2#lftopcharts {
@@ -109,26 +108,26 @@ h2#lftopcharts {
     font-weight: bold;
 }
 
-footer {    
+footer {
     text-align: center;
+     color: white;
 }
-
 
 /* ------------------------ Searcher ------------------------ */
 
-.searchmoto {    
+.searchmoto {
     padding-top: 3%;
     padding-bottom: 1%;
     font-weight: bold;
-    letter-spacing: 1vw;    
+    letter-spacing: 1vw;
 }
 
 .searchbuttons {
     padding-top: 1%;
 }
 
-audio {        
-    padding-left: 3%;    
+audio {
+    padding-left: 3%;
 }
 
 #resultbox {
@@ -144,20 +143,20 @@ audio {
 
 #albumcover {
     padding-top: 5%;
-    padding-bottom: 5%;    
+    padding-bottom: 5%;
 }
 
-#resultbox p {    
+#resultbox p {
     font-size: 2rem;
-    padding-bottom: 1rem;    
+    padding-bottom: 1rem;
 }
 
-#resultbox .upalbumslist {    
-    padding-top: 6%;    
+#resultbox .upalbumslist {
+    padding-top: 6%;
 }
 
-#resultbox .uptracklist {    
-    padding-top: 6%;    
+#resultbox .uptracklist {
+    padding-top: 6%;
 }
 
 #resultbox p.albums {
@@ -178,7 +177,7 @@ audio {
 }
 
 .list-unstyled {
-    padding-left: 8%;    
+    padding-left: 8%;
 }
 
 .media-body {
@@ -189,10 +188,25 @@ audio {
     font-size: 1.5vw;
 }
 
+.modal-title {
+    font-size: 1.5vw;
+    font-weight: bold;
+}
+
+#searches p {
+    font-size: 1.3vw;
+}
+
+.modal-footer button {
+    font-size: 1vw;
+    font-weight: bold;
+}
+
+
 /* ------------------------ About ------------------------ */
 
 .uplogosbox {
-    font-family: 'Michroma', sans-serif;   
+    font-family: 'Michroma', sans-serif;
     text-align: center;
     font-size: 2vw;
     padding-top: 1%;
@@ -201,7 +215,7 @@ audio {
 
 #apilogos {
     display: flex;
-    justify-content: center;    
+    justify-content: center;
 }
 
 #deezerlogo {
@@ -213,33 +227,33 @@ audio {
 #lastfmlogo {
     width: 12%;
     height: 20%;
-    margin-left: 4%;    
+    margin-left: 4%;
 }
 
 .uptechlogos {
     text-align: center;
-    font-family: 'Michroma', sans-serif;  
+    font-family: 'Michroma', sans-serif;
     font-size: 2vw;
     padding-top: 4%;
-    padding-bottom: 1%;    
+    padding-bottom: 1%;
 }
 
 #techlogos {
     display: flex;
     justify-content: space-around;
-    align-items: center;    
+    align-items: center;
 }
 
 #htmllogo {
-    width: 8%;   
+    width: 8%;
 }
 
 #csslogo {
-    width: 6%;    
+    width: 6%;
 }
 
 #jslogo {
-    width: 6%;    
+    width: 6%;
 }
 
 #bslogo {
